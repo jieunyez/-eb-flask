@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request, json
 
 # print a nice greeting.
 def say_hello(username = "World"):
@@ -17,25 +18,21 @@ footer_text = '</body>\n</html>'
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
 
+
 # add a rule for the index page.
-application.route('/', methods=['GET'])
+
+@application.route('/', methods=['GET'])
 def search():
     query = request.args.get('search')
+
     objdict= {'ans': query}
-    response = app.response_class(
+    response = application.response_class(
         response=json.dumps(objdict),
         status=200,
         mimetype='application/json'
     )
-  return response
+    return response
 
-application.add_url_rule('/', 'index', (lambda: header_text +
-    say_hello() + instructions + footer_text))
-
-# add a rule when the page is accessed with a name appended to the site
-# URL.
-application.add_url_rule('/<username>', 'hello', (lambda username:
-    header_text + say_hello(username) + home_link + footer_text))
 
 
 # run the app.
