@@ -127,7 +127,7 @@ def search():
         status=200,
         mimetype='application/json'
     )
-    return response
+    return objdict
 
 def compute_cosine_similarity_tf_idf(query):    
     index = inv_idx
@@ -156,6 +156,9 @@ def compute_cosine_similarity_tf_idf(query):
     score = [(index_to_title[k], v) for k, v in temp_score.items()]
     return score #sorted(score, key=lambda x:-x[1] )
 
+
+application.add_url_rule('/<username>', 'hello', (lambda username:
+    header_text + say_hello(username) + home_link + footer_text))
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
