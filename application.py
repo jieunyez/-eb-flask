@@ -88,11 +88,11 @@ question_norms = compute_question_norms(inv_idx, idf, len(prods_data))
 
 # add a rule for the index page.
 
-@application.route('/')
-def hello():
-    return "Hi"
+#@application.route('/')
+#def hello():
+    #return "Hi"
 
-@application.route('/s', methods=['GET'])
+@application.route('/', methods=['GET'])
 def search():
     query = request.args.get('search')
 
@@ -133,7 +133,8 @@ def search():
         status=200,
         mimetype='application/json'
     )
-    return ' <br>'.join(topQuestionsNoVote)
+    #' <br>'.join(topQuestionsNoVote)
+    return response
 
 def compute_cosine_similarity_tf_idf(query):    
     index = inv_idx
