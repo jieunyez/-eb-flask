@@ -105,7 +105,7 @@ def search():
         similarity_score_list.sort(key=lambda x: x[1], reverse=True)
         print(similarity_score_list[:5])
     # Type: [(title, url, score, difficulty, description, likes, dislikes)], sorted by score.
-        topQuestionsNoVote = [(t,s) for t, s in similarity_score_list[:NUM_TOP_QUESTIONS]]
+        topQuestionsNoVote = [t for t, s in similarity_score_list[:NUM_TOP_QUESTIONS]]
 
     #sim_score_list_with_vote = sorted([(t, getScoreMultiplier(titleToLike[t], titleToDislike[t])) for t, s in similarity_score_list[:NUM_TOP_QUESTIONS]], key = lambda x: x[1], reverse=True)
     # Type: [(title, url, score, difficulty, description, likes, dislikes)], sorted by score.
@@ -129,7 +129,7 @@ def search():
         status=200,
         mimetype='application/json'
     )
-    return objdict
+    return ' <br>'.join(topQuestionsNoVote)
 
 def compute_cosine_similarity_tf_idf(query):    
     index = inv_idx
