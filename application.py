@@ -18,6 +18,17 @@ footer_text = '</body>\n</html>'
 application = Flask(__name__)
 
 # add a rule for the index page.
+application.route('/', methods=['GET'])
+def search():
+    query = request.args.get('search')
+    objdict= {'ans': query}
+    response = app.response_class(
+        response=json.dumps(objdict),
+        status=200,
+        mimetype='application/json'
+    )
+  return response
+
 application.add_url_rule('/', 'index', (lambda: header_text +
     say_hello() + instructions + footer_text))
 
@@ -26,9 +37,10 @@ application.add_url_rule('/', 'index', (lambda: header_text +
 application.add_url_rule('/<username>', 'hello', (lambda username:
     header_text + say_hello(username) + home_link + footer_text))
 
+
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.debug = True
+    #application.debug = True
     application.run()
