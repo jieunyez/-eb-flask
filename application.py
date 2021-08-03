@@ -84,9 +84,11 @@ question_norms = compute_question_norms(inv_idx, idf, len(prods_data))
 
 # add a rule for the index page.
 
+@application.route('/')
+def hello():
+    return "Hi"
 
-
-@application.route('/', methods=['GET'])
+@application.route('/s', methods=['GET'])
 def search():
     query = request.args.get('search')
 
@@ -157,8 +159,6 @@ def compute_cosine_similarity_tf_idf(query):
     return score #sorted(score, key=lambda x:-x[1] )
 
 
-application.add_url_rule('/<username>', 'hello', (lambda username:
-    header_text + say_hello(username) + home_link + footer_text))
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
