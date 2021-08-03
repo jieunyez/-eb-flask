@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import math
 import nltk
-nltk.download('averaged_perceptron_tagger')
+nltk.download('all')
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize,RegexpTokenizer
