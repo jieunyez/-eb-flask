@@ -3,6 +3,9 @@ from flask import request, json
 import pandas as pd
 import numpy as np
 import math
+import nltk
+nltk.download('averaged_perceptron_tagger')
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize,RegexpTokenizer
 from nltk.stem import WordNetLemmatizer, PorterStemmer
@@ -31,6 +34,7 @@ prods_data = pd.read_csv(file_path)
 
 
 sw = set(stopwords.words('english'))
+print(sw)
 NUM_TOP_QUESTIONS = 6
 
 reg_tokenizer = RegexpTokenizer("[a-zA-Z]{2,}")
